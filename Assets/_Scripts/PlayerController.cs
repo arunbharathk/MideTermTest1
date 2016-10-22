@@ -1,6 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/*
+ * Author  : Arun Bharath Krishnan
+ * Stud_Id : 300902831
+ * Last Modified Date : 22-Oct-2015
+ * Script : TO define the player activities
+ */
 public class PlayerController : MonoBehaviour {
 	// PUBLIC INSTANCE VARIABLES +++++++++++++++++++++++++++++++++++++++
 	//public float speed;
@@ -43,7 +49,9 @@ public class PlayerController : MonoBehaviour {
 
 		gameObject.GetComponent<Transform>().position = this._newPosition;
 	}
+    
 
+    // Check the boundary of the screen
 	private void _BoundaryCheck() {
 		if (this._newPosition.x < this.boundary.xMin) {
 			this._newPosition.x = this.boundary.xMin;
@@ -53,4 +61,12 @@ public class PlayerController : MonoBehaviour {
 			this._newPosition.x = this.boundary.xMax;
 		}
 	}
+
+    void OnCollision2d()
+    {
+        if (gameObject.tag == "Enemy")
+        {
+            Debug.Log("touched Enemy");
+        }
+    }
 }
