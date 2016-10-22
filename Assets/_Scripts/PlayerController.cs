@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
 
 /*
  * Author  : Arun Bharath Krishnan
@@ -13,9 +16,15 @@ public class PlayerController : MonoBehaviour {
 	public Boundary boundary;
 
 	public Camera camera;
-	
-	// PRIVATE INSTANCE VARIABLES
-	private Vector2 _newPosition = new Vector2(0.0f, 0.0f);
+    private int _livesValue;
+    private int _scoreValue;
+    private AudioSource _endGameSound;
+
+    [Header("User Interface")]
+    public Text scoreText;
+    private int score = 0;
+    // PRIVATE INSTANCE VARIABLES
+    private Vector2 _newPosition = new Vector2(0.0f, 0.0f);
 	
 	// Use this for initialization
 	void Start () {
@@ -62,11 +71,16 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
-    void OnCollision2d()
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (gameObject.tag == "Enemy")
+        if (other.gameObject.CompareTag("Enemy"))
         {
             Debug.Log("touched Enemy");
+            score += 100;
+            scoreText.text = "Score: " + score;
+            Debug.Log("Score: " + score);
         }
     }
+
+
 }
