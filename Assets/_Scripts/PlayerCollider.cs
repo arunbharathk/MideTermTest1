@@ -20,9 +20,12 @@ public class PlayerCollider : MonoBehaviour {
 	void Update () {
 	
 	}
+
+    //updating score 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Enemy"))
+
+       if (other.gameObject.CompareTag("Enemy"))
         {
             Debug.Log("touched Enemy");
             score += 100;
